@@ -1,0 +1,27 @@
+{
+  "name": "dbot",
+  "version": "0.0.1",
+  "description": "Un bot discord",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theophile06/dbot.git"
+  },
+  "keywords": [
+    "bot",
+    "discord"
+  ],
+  "author": "T2006",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/theophile06/dbot/issues"
+  },
+  "homepage": "https://github.com/theophile06/dbot#readme",
+  "dependencies": {
+    "discord.js": "^11.4.2"
+  }
+}
