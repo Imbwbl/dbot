@@ -7,7 +7,7 @@ try {
   BoToken = s.BOT_TOKEN;
 } catch (e) {
   console.log("Pas de secrets trouvé, on utilise process.env.BOT_TOKEN");
-  console.log(e);
+  //console.log(e);
   BoToken = process.env.BOT_TOKEN;
 }
 
@@ -81,4 +81,4 @@ client.on('guildMemberAdd', member => {
 
 // Connect le client.
 client.login(BoToken);
-console.log(BoToken);
+//console.log(BoToken);
