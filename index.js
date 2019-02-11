@@ -17,6 +17,20 @@ const { Client, RichEmbed } = require('discord.js');
 // Instancie un nouveau client Discord
 const client = new Client();
 
+
+const abo = () => {
+  // We can create embeds using the MessageEmbed constructor
+  // Read more about all that you can do with the constructor
+  // over at https://discord.js.org/#/docs/main/stable/class/RichEmbed
+  return new RichEmbed()
+    // Set the title of the field
+    .setTitle(':arrow_down: Abonne toi à T2006 :arrow_down:')
+    // Set the color of the embed
+    .setColor(0xff0000)
+    // Set the main content of the embed
+    .setDescription('https://www.youtube.com/channel/UCWC87vcR72VDYM7AGBzuBDQ');
+} 
+
 // Surveille le status
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -47,19 +61,9 @@ client.on('message', msg => {
     // Send the embed to the same channel as the message
     msg.channel.send(embed);
   }
-     if (msg.content === '^^abo') {
-    // We can create embeds using the MessageEmbed constructor
-    // Read more about all that you can do with the constructor
-    // over at https://discord.js.org/#/docs/main/stable/class/RichEmbed
-    const embed = new RichEmbed()
-      // Set the title of the field
-      .setTitle(':arrow_down: Abonne toi à T2006 :arrow_down:')
-      // Set the color of the embed
-      .setColor(0xff0000)
-      // Set the main content of the embed
-      .setDescription('https://www.youtube.com/channel/UCWC87vcR72VDYM7AGBzuBDQ');
+  if (msg.content === '^^abo') {
     // Send the embed to the same channel as the message
-    msg.channel.send(embed);
+    msg.channel.send(abo());
   }
   if (msg.content === 'avatar') {
     // Send the user's avatar URL
@@ -75,7 +79,7 @@ client.on('guildMemberAdd', member => {
   if (!channel) return;
   // Send the message, mentioning the member
   channel.send(`Bienvenue ${member}!`);
-  channel.send(`^^abo`);
+  channel.send(abo());
 });
 
 // Connect le client.
