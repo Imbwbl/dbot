@@ -73,13 +73,16 @@ client.on('message', msg => {
   }
 
   if (msg.content === 'cat') {
+    // Utilise http://random.cat pour afficher une image de chat...
     getJSON('http://aws.random.cat/meow', function(error, response){
-      console.log(error);
-      console.log(response);
-      // Create the attachment using Attachment
-      const attachment = new Attachment(response.file);
-      // Send the attachment in the msg channel
-      msg.channel.send(attachment);
+      if (error) {
+        console.log(error);
+      } else {
+        // On crée l'attachement
+        const attachment = new Attachment(response.file);
+        // Et on envoie le fichier dans le canal...
+        msg.channel.send(attachment);
+      }
     });
   }
 });
