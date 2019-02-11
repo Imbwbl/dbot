@@ -1,5 +1,5 @@
 // Va chercher les secrets dans le fichier secrets.js
-var s = require("./secrets");
+//var s = require("./secrets");
 
 // Requière la librairie Discord
 const { Client, RichEmbed } = require('discord.js');
