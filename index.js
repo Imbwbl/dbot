@@ -67,18 +67,17 @@ client.on('message', msg => {
   }
 });
 
-// Create an event listener for new guild members
+// En cas de nouveaux arrivés...
 client.on('guildMemberAdd', member => {
   // Send the message to a designated channel on a server:
-  const channel = member.guild.channels.find(ch => ch.name === 'member-log');
+  const channel = member.guild.channels.find(ch => ch.name === 'gere-bot');
   // Do nothing if the channel wasn't found on this server
   if (!channel) return;
   // Send the message, mentioning the member
   channel.send(`Bienvenue ${member}!`);
   channel.send(`^^abo`);
-
 });
 
 // Connect le client.
 client.login(BoToken);
-//console.log(BoToken);
+console.log("Le bot est démarré !");
