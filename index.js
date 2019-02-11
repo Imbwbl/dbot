@@ -17,17 +17,15 @@ const { Client, RichEmbed } = require('discord.js');
 // Instancie un nouveau client Discord
 const client = new Client();
 
-
+// Construit un message rich "abonnement" avec le constructeur MessageEmbed
+// https://discord.js.org/#/docs/main/stable/class/RichEmbed
 const abo = () => {
-  // We can create embeds using the MessageEmbed constructor
-  // Read more about all that you can do with the constructor
-  // over at https://discord.js.org/#/docs/main/stable/class/RichEmbed
   return new RichEmbed()
-    // Set the title of the field
+    // Le titre de l'encart
     .setTitle(':arrow_down: Abonne toi à T2006 :arrow_down:')
-    // Set the color of the embed
+    // La couleur de l'encart
     .setColor(0xff0000)
-    // Set the main content of the embed
+    // Le contenu de l'encart
     .setDescription('https://www.youtube.com/channel/UCWC87vcR72VDYM7AGBzuBDQ');
 } 
 
@@ -38,19 +36,20 @@ client.on('ready', () => {
 
 // Surveille les messages
 client.on('message', msg => {
-  if (msg.content === '^^ping') {     // Si le message dit "ping"
+
+  if (msg.content === '^^ping') {     // Si le message dit "^^ping"
     msg.reply('Pong! :ping_pong:');   // Répond "Pong!"
   }
-  if (msg.content === '^^abo2') {     // Si le message dit "ping"
+
+  if (msg.content === '^^abo2') {     // Si le message dit "^^abo2"
     msg.reply('Hey! Abonnez-vous à la châine de T2006 → https://www.youtube.com/channel/UCWC87vcR72VDYM7AGBzuBDQ :T2006:');   // Répond "Pong!"
   }
-  if (msg.content === '^^salut') {     // Si le message dit "ping"
-    msg.reply('dis salut');
+
+  if (msg.content === '^^salut') {    // Si le message dit "^salut"
+    msg.reply('salut salut');
   }
-   if (msg.content === '1234') {
-    // We can create embeds using the MessageEmbed constructor
-    // Read more about all that you can do with the constructor
-    // over at https://discord.js.org/#/docs/main/stable/class/RichEmbed
+
+  if (msg.content === '1234') {       // un test si le msg dit "1234"
     const embed = new RichEmbed()
       // Set the title of the field
       .setTitle('A slick little embed')
@@ -61,23 +60,26 @@ client.on('message', msg => {
     // Send the embed to the same channel as the message
     msg.channel.send(embed);
   }
-  if (msg.content === '^^abo') {
-    // Send the embed to the same channel as the message
+
+  if (msg.content === '^^abo') {      // si qqn tape "^^abo"
+    // Envoie le resultat de la fonction abo()
     msg.channel.send(abo());
   }
-  if (msg.content === 'avatar') {
-    // Send the user's avatar URL
+
+  if (msg.content === 'avatar') {     // si "avatar"
+    // Retourne l'URL vers l'image de la personne
     msg.reply(msg.author.avatarURL);
   }
+
 });
 
 // En cas de nouveaux arrivés...
 client.on('guildMemberAdd', member => {
-  // Send the message to a designated channel on a server:
+  // On envoie le message à un canal désigné, ici "gere-bot"
   const channel = member.guild.channels.find(ch => ch.name === 'gere-bot');
-  // Do nothing if the channel wasn't found on this server
+  // Si on ne trouve pas le canal, on fait rien
   if (!channel) return;
-  // Send the message, mentioning the member
+  // Autrement, on envoie le message dans le canal (plouf!)
   channel.send(`Bienvenue ${member}!`);
   channel.send(abo());
 });
