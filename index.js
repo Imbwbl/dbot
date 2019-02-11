@@ -1,5 +1,15 @@
-// Va chercher les secrets dans le fichier secrets.js
-//var s = require("./secrets");
+// Va chercher les secrets dans le fichier secrets.js, dans le cas ou
+// on est en local. Comme Heroku n'aime pas charger un module qui n'existe
+// pas, il faut attraper l'erreur pour pas que cela plante...
+const BoToken;
+try {
+  var s = require("./secrets");
+  BoToken = s.BOT_TOKEN;
+} catch (e) {
+  console.log("Pas de secrets trouvé, on utilise process.env.BOT_TOKEN");
+  console.log(e);
+  BoToken = process.env.BOT_TOKEN;
+}
 
 // Requière la librairie Discord
 const { Client, RichEmbed } = require('discord.js');
@@ -69,6 +79,6 @@ client.on('guildMemberAdd', member => {
 
 });
 
-// Connect le client. Utise soit le secret, soit une variable d'environneent
-client.login(process.env.BOT_TOKEN);
-console.log(process.env.BOT_TOKEN);
+// Connect le client.
+client.login(BoToken);
+console.log(BoToken);
