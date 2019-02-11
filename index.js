@@ -1,7 +1,7 @@
 // Va chercher les secrets dans le fichier secrets.js, dans le cas ou
 // on est en local. Comme Heroku n'aime pas charger un module qui n'existe
 // pas, il faut attraper l'erreur pour pas que cela plante...
-const BoToken;
+var BoToken = null;
 try {
   var s = require("./secrets");
   BoToken = s.BOT_TOKEN;
