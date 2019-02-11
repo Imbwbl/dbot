@@ -70,5 +70,5 @@ client.on('guildMemberAdd', member => {
 });
 
 // Connect le client. Utise soit le secret, soit une variable d'environneent
-client.login(s.BOT_TOKEN || process.env.BOT_TOKEN);
+client.login(process.env.BOT_TOKEN);
 console.log(process.env.BOT_TOKEN);
