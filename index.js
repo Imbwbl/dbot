@@ -12,7 +12,8 @@ try {
 }
 
 // Requière la librairie Discord
-const { Client, RichEmbed } = require('discord.js');
+const { Client, RichEmbed, Attachment } = require('discord.js');
+const getJSON = require('get-json');
 
 // Instancie un nouveau client Discord
 const client = new Client();
@@ -71,6 +72,16 @@ client.on('message', msg => {
     msg.reply(msg.author.avatarURL);
   }
 
+  if (msg.content === 'cat') {
+    getJSON('http://aws.random.cat/meow', function(error, response){
+      console.log(error);
+      console.log(response);
+      // Create the attachment using Attachment
+      const attachment = new Attachment(response.file);
+      // Send the attachment in the msg channel
+      msg.channel.send(attachment);
+    });
+  }
 });
 
 // En cas de nouveaux arrivés...

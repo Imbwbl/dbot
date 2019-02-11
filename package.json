@@ -1,6 +1,6 @@
 {
   "name": "dbot",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Un bot discord",
   "main": "index.js",
   "engines": {
@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/theophile06/dbot#readme",
   "dependencies": {
-    "discord.js": "^11.4.2"
+    "discord.js": "^11.4.2",
+    "get-json": "^1.0.1"
   }
 }
