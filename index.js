@@ -28,7 +28,7 @@ const abo = () => {
     .setColor(0xff0000)
     // Le contenu de l'encart
     .setDescription('https://www.youtube.com/channel/UCWC87vcR72VDYM7AGBzuBDQ');
-} 
+}
 
 // Surveille le status
 client.on('ready', () => {
@@ -48,6 +48,11 @@ client.on('message', msg => {
 
   if (msg.content === '^^salut') {    // Si le message dit "^salut"
     msg.reply('salut salut');
+  }
+
+  if (msg.content === 'mew mew') {    // Si le message dit "^salut"
+    var ts = new Date().getTime();
+    msg.reply("http://thecatapi.com/api/images/get?format=src&type=gif&timestamp="+ts);
   }
 
   if (msg.content === '1234') {       // un test si le msg dit "1234"
