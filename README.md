@@ -19,8 +19,48 @@ d'installer les programmes suivants sur sa machine :
 
 Optionellement, vous pouvez aussi installer l'application [Discord](https://discordapp.com), un client Git, comme [GitKraken](https://www.gitkraken.com), ainsi que le [heroku-cli](https://devcenter.heroku.com/articles/heroku-cli).
 
-### 
-## Marche à suivre en partant de zéro
+## Étape 1. Cloner le dépôt de theophile06
+1. Visiter https://github.com/theophile06/dbot et cliquer "Fork", pour "forker" le repository dans votre compte GitHub.
+1. Cloner ensuite le fork nouvellement créé sur votre ordinateur, avec `git clone https://github.com/XXXXX/dbot.git`, ou `XXXXXX` est votre nom d'utilisateur.
+1. Ouvrir le dossier cloné dans le terminal, et taper `npm install` pour installer les dépendances.
+1. Avec un éditeur de texte, dupliquer le fichier `secrets.js.sample` et le renommer `secrets.js`
+1. Il s'agit maintenant d'obtenir un secret (appellé BOT_TOKEN) de la part de discord permettant d'authoriser le BOT.
+  * Aller sur [Discord Applications](https://discordapp.com/developers/applications)
+  * Cliquer sur "New Application" et choisir un nom
+  * Sur la page de l'application, copier 
+    1. CLIENT ID
+    1. CLIENT SECRET
+    Et remplacer les variables adéquates dans le fichier `secrets.js`
+1. Sur la page de l'application, se rendre dans le menu "Bot" à droite, puis cliquer sur "Add Bot"
+1. Copier le BOT_TOKEN et le remplacer dans le fichier `secrets.js`
+1. Cliquer le menu OAuth2:
+  * Dans le tableau SCOPES, ajouter "Bot"
+  * Dans le tableau "BOT PERMISSION", ajouter les "PERMISSIONS TEXTUELLES" utiles
+1. Copier ensuite l'URL de la forme `https://discodapp.com/api/oauth2/authorize?client_id=11223344556677&permissions=449600&scope=bot` (ou généré ce lien) et l'ouvrir dans un navigateur
+1. Ceci permet d'ajouter un bot à un serveur; sélectionner un serveur (plutôt de test pour le moment) et octroyez les permissions nécessaires (normalement déjà définie à l'étape précédente).
+1. Autoriser le bot.
+1. Le bot à normalement rejoint un chat sur discord et vous êtes notifié.
+1. Assurez-vous de relancer le serveur du bot avec la commande `npm start`
+1. A ce point la, le bot devrait répondre aux messages dans le channel. Essayaez par exemple d'écrire `^^ping`... le bot devrait répondre pong !
+
+## Étape 2. Héberger le bot sur heroku
+1. il faut avoir un compte heroku
+1. créer une nouvelle [app](https://dashboard.heroku.com/new-app), en lui donnant un nom et une région (p.ex. Europe)
+1. dans la section "deployement methods" (ou depuis l'onglet "Deploy"), choisir GitHub. Autoriser Heroku et continuer.
+  1. Dans la section "Connect to GitHub", rechercher le nom du repository (par exemple dbot) et le connecter. 
+  1. Cliquer sur "Enable Automatic Deploys"
+  1. Le but est d'avoir un déploiement automatique pour tout nouveaux commits sur ce repo: "Automatically deploys from master"
+  1. Au débuts, il est possible de forcer le déploiement manuellement en cliquant sur "Deploy Branch"
+1. Il faut maintenant définir la "Config Vars" du BOT_TOKEN. Se rendre dans l'onglet "Settings" et "Reveal config vars" pour créer la variable suivante :
+  * Nom : `BOT_TOKEN`
+  * Valeur : `CECI.EST.UN.TOKEN.TRES.TRES.TRES.TRES.LONG` (Comme dans les secrets)
+1. sous "Resources", s'assurer que le `worker` est activé. Si c'est `web`, le bot va planter en 60 secondes car heroku s'attend a avoir un "port" ouvert.
+1. une fois déployé (vous pouvez suivre les logs du déploiement), on peut voir les logs (e.g. console.log()) de l'app sur https://dashboard.heroku.com/apps/VotreAPP/logs
+1. comme pour la partie locale, si le bot est "online" et répond sur le canal, c'est gagné !
+1. Note que par défaut, le Bot est déployé dans un "dyno" web. Depuis l'onglet "Overview", cliquer sur configure dyno, désactiver le dyno "web" et activer le dyno "worker" (TODO: comprendre comment le faire par défaut...)
+
+## Marche à suivre en partant de *zéro*
+[DEPRECATED]
 1. créer un dépôt sur github.com
 1. le clone sur son ordinateur, avec `git clone https://github.com/theophile06/dbot.git`
 1. taper `npm init` pour créer le projet node.js
@@ -40,16 +80,3 @@ Optionellement, vous pouvez aussi installer l'application [Discord](https://disc
 1. dans un terminal, lancer le bot:
   `node index.js` ou `npm start`
 1. aller dans le salon discord, et tapper "ping"; si le bot répond "Pong!" c'est gagné :)
-
-
-## Pour héberger le bot sur heroku
-1. il faut avoir un compte heroku
-1. créer une nouvelle [app](https://dashboard.heroku.com/new-app)
-1. dans les paramètres de l'app, vous pouvez changer son nom, et il faut surtout définir la "Config Vars" suivante :
-  * Nom : `BOT_TOKEN`
-  * Valeur : `CECI.EST.UN.TOKEN.TRES.TRES.TRES.TRES.LONG` (Comme dans les secrets)
-1. dans l'onglet "Deploy", lier le repository github. Le but est d'avoir un déploiement automatique pour tout nouveaux commits sur ce repo: "Automatically deploys from master"
-1. la première fois, il est possible de forcer le déploiement manuellement.
-1. sous "Resources", s'assurer que le `worker` est activé. Si c'est `web`, le bot va planter en 60 secondes car heroku s'attend a avoir un "port" ouvert.
-1. une fois déployé (vous pouvez suivre les logs du déploiement), on peut voir les logs (e.g. console.log()) de l'app sur https://dashboard.heroku.com/apps/VotreAPP/logs
-1. comme pour la partie locale, si le bot est "online" et répond sur le canal, c'est gagné !
