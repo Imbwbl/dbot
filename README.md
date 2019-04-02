@@ -1,7 +1,26 @@
 # dbot
-Une tentative de bot discrod hebergée sur heroku.
+Une tentative de bot Discrod hebergée sur heroku.
 
-## Marche à suivre de zéro
+## Marche à suivre "rapide"
+Cette marche à suivre tente de lister les étapes minimum pour pouvoir 
+  1. Lancer le bot/script localement sur sa machine et le tester dans un serveur Discord ;
+  1. Héberger le bot sur heroku.com, afin qu'il soit disponible 24/24.
+
+### Pré-Requis
+Afin de mener a bien les opérations suivantes, il est nécessaire d'avoir :
+  * Un compte [GitHub](https://github.com)
+  * Un compte [Discord](https://discordapp.com)
+  * Un compte [Heroku](https://heroku.com)
+
+De plus, afin de pouvoir modifier et tester le script, il est nécessaire 
+d'installer les programmes suivants sur sa machine :
+  * [Node.js](https://nodejs.org)
+  * [Git](https://git-scm.com/)
+
+Optionellement, vous pouvez aussi installer l'application [Discord](https://discordapp.com), un client Git, comme [GitKraken](https://www.gitkraken.com), ainsi que le [heroku-cli](https://devcenter.heroku.com/articles/heroku-cli).
+
+### 
+## Marche à suivre en partant de zéro
 1. créer un dépôt sur github.com
 1. le clone sur son ordinateur, avec `git clone https://github.com/theophile06/dbot.git`
 1. taper `npm init` pour créer le projet node.js
