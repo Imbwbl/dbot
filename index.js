@@ -61,11 +61,17 @@ client.on('message', msg => {
     msg.reply('salut salut');
   }
 
+  if (msg.content === 'Garis') {    // Si le message dit "^salut"
+    msg.reply('Il est trop OP - il faut le nerf.');
+  }
   if (msg.content === 'mew mew') {    // Si le message dit "^salut"
     var ts = new Date().getTime();
     msg.reply("http://thecatapi.com/api/images/get?format=src&type=gif&timestamp="+ts);
   }
 
+  if (msg.content === 'Marvel') {    // Si le message dit "^salut"
+    msg.reply('C"est un oiseau, c"est un avion, et je me souvien plus.');
+  }
   if (msg.content === '1234') {       // un test si le msg dit "1234"
     const embed = new RichEmbed()
       // Set the title of the field
