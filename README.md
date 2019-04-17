@@ -30,12 +30,12 @@ Optionellement, vous pouvez aussi installer l'application [Discord](https://disc
   * Sur la page de l'application, copier 
     1. CLIENT ID
     1. CLIENT SECRET
-    Et remplacer les variables adéquates dans le fichier `secrets.js`
-1. Sur la page de l'application, se rendre dans le menu "Bot" à droite, puis cliquer sur "Add Bot"
+    Et remplacer les variables adéquates dans le fichier `secrets.js`  
+1. Sur la page de l'application, se rendre dans le menu "Bot" à gauche, puis cliquer sur "Add Bot"
 1. Copier le BOT_TOKEN et le remplacer dans le fichier `secrets.js`
 1. Cliquer le menu OAuth2:
   * Dans le tableau SCOPES, ajouter "Bot"
-  * Dans le tableau "BOT PERMISSION", ajouter les "PERMISSIONS TEXTUELLES" utiles
+  * Dans le tableau "BOT PERMISSION", ajouter les "PERMISSIONS TEXTUELLES" utiles  
 1. Copier ensuite l'URL de la forme `https://discodapp.com/api/oauth2/authorize?client_id=11223344556677&permissions=449600&scope=bot` (ou généré ce lien) et l'ouvrir dans un navigateur
 1. Ceci permet d'ajouter un bot à un serveur; sélectionner un serveur (plutôt de test pour le moment) et octroyez les permissions nécessaires (normalement déjà définie à l'étape précédente).
 1. Autoriser le bot.
