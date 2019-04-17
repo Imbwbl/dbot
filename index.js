@@ -82,6 +82,11 @@ client.on('message', msg => {
     // Envoie le resultat de la fonction abo()
     msg.channel.send(abo());
   }
+  if (msg.content === 'yt') {      // si qqn tape "yt"
+    // Envoie le resultat de la fonction abo()
+    yt(msg)
+    msg.channel.send('Voila');
+  }
 
   if (msg.content === 'avatar') {     // si "avatar"
     // Retourne l'URL vers l'image de la personne
