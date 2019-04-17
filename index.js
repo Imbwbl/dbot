@@ -85,7 +85,12 @@ client.on('message', msg => {
 
   if (msg.content === 'avatar') {     // si "avatar"
     // Retourne l'URL vers l'image de la personne
-    msg.reply(msg.author.avatarURL);
+    console.debug(msg.author)
+    if (msg.author.avatarURL) {
+      msg.reply(msg.author.avatarURL);
+    } else {
+      msg.reply("pas d'avatar...");
+    }
   }
 
   if (msg.content === 'cat') {
