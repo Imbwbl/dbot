@@ -14,7 +14,8 @@ try {
 // Requière la librairie Discord
 const { Client, RichEmbed, Attachment } = require('discord.js');
 const getJSON = require('get-json');
-
+let Parser = require('rss-parser');
+let parser = new Parser();
 // Instancie un nouveau client Discord
 const client = new Client();
 
@@ -30,6 +31,16 @@ const abo = () => {
     .setDescription('https://www.youtube.com/channel/UCWC87vcR72VDYM7AGBzuBDQ');
 }
 
+async function yt(msg){
+  let feed = await parser.parseURL('https://www.youtube.com/feeds/videos.xml?channel_id=UCN25q81_zmzVMMRGxMvEf4w');
+  console.log(feed.title, feed.feedUrl, feed.link);
+  for (i=0; i<3; i++) {
+    console.log(feed.items[i])
+    msg.channel.send(feed.items[i].title + " " + feed.items[i].link)
+  }
+  msg.channel.send("Youtuber " + feed.title);
+  return "youtube"
+}
 // Surveille le status
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
