@@ -2,7 +2,7 @@
 Une tentative de bot Discrod hebergée sur heroku.
 
 ## Marche à suivre "rapide"
-Cette marche à suivre tente de lister les étapes minimum pour pouvoir 
+Cette marche à suivre tente de lister les étapes minimum pour pouvoir
   1. Lancer le bot/script localement sur sa machine et le tester dans un serveur Discord ;
   1. Héberger le bot sur heroku.com, afin qu'il soit disponible 24/24.
 
@@ -12,7 +12,7 @@ Afin de mener a bien les opérations suivantes, il est nécessaire d'avoir :
   * Un compte [Discord](https://discordapp.com)
   * Un compte [Heroku](https://heroku.com)
 
-De plus, afin de pouvoir modifier et tester le script, il est nécessaire 
+De plus, afin de pouvoir modifier et tester le script, il est nécessaire
 d'installer les programmes suivants sur sa machine :
   * [Node.js](https://nodejs.org)
   * [Git](https://git-scm.com/)
@@ -27,27 +27,28 @@ Optionellement, vous pouvez aussi installer l'application [Discord](https://disc
 1. Il s'agit maintenant d'obtenir un secret (appellé BOT_TOKEN) de la part de discord permettant d'authoriser le BOT.
   * Aller sur [Discord Applications](https://discordapp.com/developers/applications)
   * Cliquer sur "New Application" et choisir un nom
-  * Sur la page de l'application, copier 
+  * Sur la page de l'application, copier
     1. CLIENT ID
     1. CLIENT SECRET
+
     Et remplacer les variables adéquates dans le fichier `secrets.js`  
 1. Sur la page de l'application, se rendre dans le menu "Bot" à gauche, puis cliquer sur "Add Bot"
 1. Copier le BOT_TOKEN et le remplacer dans le fichier `secrets.js`
 1. Cliquer le menu OAuth2:
   * Dans le tableau SCOPES, ajouter "Bot"
   * Dans le tableau "BOT PERMISSION", ajouter les "PERMISSIONS TEXTUELLES" utiles  
-1. Copier ensuite l'URL de la forme `https://discodapp.com/api/oauth2/authorize?client_id=11223344556677&permissions=449600&scope=bot` (ou généré ce lien) et l'ouvrir dans un navigateur
-1. Ceci permet d'ajouter un bot à un serveur; sélectionner un serveur (plutôt de test pour le moment) et octroyez les permissions nécessaires (normalement déjà définie à l'étape précédente).
+1. Copier ensuite l'URL de la forme `https://discodapp.com/api/oauth2/authorize?client_id=11223344556677&permissions=449600&scope=bot` (ou générer ce lien) et l'ouvrir dans un navigateur
+1. Ceci permet d'ajouter un bot à un serveur; sélectionner un serveur (plutôt de test pour le moment) et octroyez les permissions nécessaires (normalement déjà définie à l'étape précédente). Si vous n'en n'avez pas il faut en créer un depuis l'application ([Exemple](./Discord_server.png)) et rafraîchir la page pour le voir...
 1. Autoriser le bot.
 1. Le bot à normalement rejoint un chat sur discord et vous êtes notifié.
-1. Assurez-vous de relancer le serveur du bot avec la commande `npm start`
+1. Maintenant que le bot est présent dans un chat discord, vous pouvez lancer le serveur du bot avec la commande `npm start` depuis un terminal.
 1. A ce point la, le bot devrait répondre aux messages dans le channel. Essayaez par exemple d'écrire `^^ping`... le bot devrait répondre pong !
 
 ## Étape 2. Héberger le bot sur heroku
 1. il faut avoir un compte heroku
 1. créer une nouvelle [app](https://dashboard.heroku.com/new-app), en lui donnant un nom et une région (p.ex. Europe)
 1. dans la section "deployement methods" (ou depuis l'onglet "Deploy"), choisir GitHub. Autoriser Heroku et continuer.
-  1. Dans la section "Connect to GitHub", rechercher le nom du repository (par exemple dbot) et le connecter. 
+  1. Dans la section "Connect to GitHub", rechercher le nom du repository (par exemple dbot) et le connecter.
   1. Cliquer sur "Enable Automatic Deploys"
   1. Le but est d'avoir un déploiement automatique pour tout nouveaux commits sur ce repo: "Automatically deploys from master"
   1. Au débuts, il est possible de forcer le déploiement manuellement en cliquant sur "Deploy Branch"
