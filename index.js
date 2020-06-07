@@ -14,7 +14,8 @@ try {
 // Requière la librairie Discord
 const { Client, RichEmbed, Attachment } = require('discord.js');
 const getJSON = require('get-json');
-
+let Parser = require('rss-parser');
+let parser = new Parser();
 // Instancie un nouveau client Discord
 const client = new Client();
 
@@ -30,6 +31,16 @@ const abo = () => {
     .setDescription('https://www.youtube.com/channel/UCWC87vcR72VDYM7AGBzuBDQ');
 }
 
+async function yt(msg){
+  let feed = await parser.parseURL('https://www.youtube.com/feeds/videos.xml?channel_id=UCN25q81_zmzVMMRGxMvEf4w');
+  console.log(feed.title, feed.feedUrl, feed.link);
+  for (i=0; i<3; i++) {
+    console.log(feed.items[i])
+    msg.channel.send(feed.items[i].title + " " + feed.items[i].link)
+  }
+  msg.channel.send("Youtuber " + feed.title);
+  return "youtube"
+}
 // Surveille le status
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -50,11 +61,17 @@ client.on('message', msg => {
     msg.reply('salut salut');
   }
 
+  if (msg.content === 'Garis') {    // Si le message dit "^salut"
+    msg.reply('Il est trop OP - il faut le nerf.');
+  }
   if (msg.content === 'mew mew') {    // Si le message dit "^salut"
     var ts = new Date().getTime();
     msg.reply("http://thecatapi.com/api/images/get?format=src&type=gif&timestamp="+ts);
   }
 
+  if (msg.content === 'Marvel') {    // Si le message dit "^salut"
+    msg.reply('C"est un oiseau, c"est un avion, et je me souvien plus.');
+  }
   if (msg.content === '1234') {       // un test si le msg dit "1234"
     const embed = new RichEmbed()
       // Set the title of the field
@@ -71,10 +88,20 @@ client.on('message', msg => {
     // Envoie le resultat de la fonction abo()
     msg.channel.send(abo());
   }
+  if (msg.content === 'yt') {      // si qqn tape "yt"
+    // Envoie le resultat de la fonction abo()
+    yt(msg)
+    msg.channel.send('Voila');
+  }
 
   if (msg.content === 'avatar') {     // si "avatar"
     // Retourne l'URL vers l'image de la personne
-    msg.reply(msg.author.avatarURL);
+    console.debug(msg.author)
+    if (msg.author.avatarURL) {
+      msg.reply(msg.author.avatarURL);
+    } else {
+      msg.reply("pas d'avatar...");
+    }
   }
 
   if (msg.content === 'cat') {
